@@ -28,7 +28,7 @@ class GraphEditor {
   }
 
   #handleMouseMove(evt) {
-    this.mouse = this.viewport.getMouse(evt);
+    this.mouse = this.viewport.getMouse(evt, true);
     this.hovered = getNearestPoint(
       this.mouse,
       this.graph.points,
@@ -76,6 +76,13 @@ class GraphEditor {
     }
     this.hovered = null;
   }
+
+  dispose() {
+    this.graph.dispose()
+    this.selected = null
+    this.hovered = null
+  }
+
   display() {
     this.graph.draw(this.ctx);
     if (this.selected) {
