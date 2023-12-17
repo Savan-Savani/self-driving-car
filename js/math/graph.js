@@ -5,10 +5,22 @@ class Graph {
   }
 
   static load(info) {
-    const points = info.points.map((pointInfo) => new Point(pointInfo.x, pointInfo.y))
-    const segments = info.segments.map((segmentInfo) => new Segment(points.find((p) => p.equals(segmentInfo.p1)), points.find((p) => p.equals(segmentInfo.p2))))
+    const points = info.points.map(
+      (pointInfo) => new Point(pointInfo.x, pointInfo.y)
+    );
+    const segments = info.segments.map(
+      (segmentInfo) =>
+        new Segment(
+          points.find((p) => p.equals(segmentInfo.p1)),
+          points.find((p) => p.equals(segmentInfo.p2))
+        )
+    );
 
-    return new Graph(points, segments)
+    return new Graph(points, segments);
+  }
+
+  hash() {
+    return JSON.stringify(this);
   }
 
   addPoint(point) {
